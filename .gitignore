@@ -11,7 +11,11 @@ __pycache__/
 # Idea
 .idea/
 
+# pipenv
 pipfile.lock
+
+# pickle
+*.pck
 
 # C extensions
 *.so

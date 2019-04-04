@@ -16,7 +16,8 @@ class Classificator:
         return cls(dh)
 
     @classmethod
-    def from_folder(cls, folder_name="images", do_pickle=True, pickle_file_name="hashes.pck"):
+    def from_folder(cls, folder_name="resources\\images\\images",
+                    do_pickle=True, pickle_file_name="resources\\pickles\\hashes.pck"):
         dict_hashed = cls.__batch_hash(folder_name)
         if do_pickle:
             with open(pickle_file_name, 'wb') as handle:
@@ -36,9 +37,9 @@ class Classificator:
 
         for file in files:
             print('hashing image %s' % file)
-            name = file.split('/')[-1].lower()
-            _, file_name = name.split('\\')
-            img = Image.open(name)
+            dict_file_names = file.split('\\')
+            file_name = dict_file_names[len(dict_file_names) - 1]
+            img = Image.open(file)
             result[file_name] = cls.__hash(img)
         return result
 
@@ -53,4 +54,6 @@ class Classificator:
                 closest = key
         print(dist)
         return closest
+
+
 
