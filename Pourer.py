@@ -9,8 +9,8 @@ source_images_folder = "resources\\images\\source_images"
 
 files = [os.path.join(source_images_folder, p) for p in sorted(os.listdir(source_images_folder))]
 result = {}
-kls = Classificator.from_folder()
-#kls = Classificator.from_pickle()
+#kls = Classificator.from_folder()
+kls = Classificator.from_pickle()
 for file in files:
     dict_file_names = file.split('\\')
     file_name = dict_file_names[len(dict_file_names) - 1]

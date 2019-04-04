@@ -10,7 +10,7 @@ class Classificator:
         self.dist_hashes = dict_hashed
 
     @classmethod
-    def from_pickle(cls, pickle_file_name="hashes.pck"):
+    def from_pickle(cls, pickle_file_name="resources\\pickles\\hashes.pck"):
         with open(pickle_file_name, 'rb') as handle:
             dh = pickle.load(handle)
         return cls(dh)

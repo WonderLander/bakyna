@@ -61,23 +61,22 @@ class RectangleDetector(object):
         self.card_corners_list = []
         self.card_contour_list = []
         for contour in self.contours:
-            if self.validate_area(contour):
-                corners = self.get_corners(contour)
-                if len(corners) == 4:
-                    lu, ru, rb, lb, width, height = self.sort_corners_calculate_width_height(corners)
-                    if self.validate_aspect_ratio(width, height):
-                        self.card_corners_list.append([lu, ru, rb, lb])
-                        self.card_contour_list.append(contour)
+            corners = self.get_corners(contour)
+            if len(corners) == 4:
+                lu, ru, rb, lb, width, height = self.sort_corners_calculate_width_height(corners)
+                if self.validate_aspect_ratio(width, height):
+                    self.card_corners_list.append([lu, ru, rb, lb])
+                    self.card_contour_list.append(contour)
 
-    def validate_area(self, contour):
-        org_img_height, org_img_width, _ = self.org_img.shape
-        min_image_area = org_img_height * org_img_width * 0.1
-        max_image_area = org_img_height * org_img_width * 0.95
-        contour_area = cv.contourArea(contour)
-        if (contour_area < min_image_area) or (contour_area > max_image_area):
-            return False
-        else:
-            return True
+    # def validate_area(self, contour):
+    #     org_img_height, org_img_width, _ = self.org_img.shape
+    #     min_image_area = org_img_height * org_img_width * 0.1
+    #     max_image_area = org_img_height * org_img_width * 0.95
+    #     contour_area = cv.contourArea(contour)
+    #     if (contour_area < min_image_area) or (contour_area > max_image_area):
+    #         return False
+    #     else:
+    #         return True
 
     @staticmethod
     def validate_aspect_ratio(width, height, radius=0.3):
