@@ -27,7 +27,6 @@ class Classificator:
     @staticmethod
     def __hash(img):
         img_hash = imagehash.dhash(img, 16)
-        #img_hash = imagehash.phash(img)
         return img_hash
 
     @classmethod

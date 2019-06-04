@@ -116,58 +116,6 @@ class RectangleDetector(object):
             return lb, lu, ru, rb, width, height
 
 
-    # @staticmethod
-    # def sort_corners_calculate_width_height(corners):
-    #     sorted_corners = []
-    #     for c in corners:
-    #         sorted_corners.append(c[0])
-    #     sorted_corners = sorted(sorted_corners, key=lambda x: x[0])
-    #     leftmost = sorted_corners[0]
-    #     distances = []
-    #     # Calculate distances to the other points
-    #     for i in range(1, 4):
-    #         point = sorted_corners[i]
-    #         distance = RectangleDetector.calc_eucl_dist(leftmost, point)
-    #         distances.append((point, distance))
-    #
-    #     sorted_distances = sorted(distances, key=lambda tpl: tpl[1])
-    #     nearest_neighbour, width = sorted_distances[0]
-    #
-    #     if nearest_neighbour[1] < leftmost[1]:
-    #         # Nearest neighbour is above leftmost point, that means that they make upper side
-    #         lu = leftmost
-    #         ru = nearest_neighbour
-    #         lb, height = sorted_distances[1]
-    #         rb, _ = sorted_distances[2]
-    #         return lu, ru, rb, lb, width, height
-    #
-    #     if nearest_neighbour[1] > leftmost[1]:
-    #         # Nearest neighbour is under leftmost point, that means that they make bottom side
-    #         lb = leftmost
-    #         rb = nearest_neighbour
-    #         lu, height = sorted_distances[1]
-    #         ru, _ = sorted_distances[2]
-    #         return lu, ru, rb, lb, width, height
-    #
-    #     else:
-    #         # Nearest neighbour is on same x-coordinate, which means that we need more
-    #         # info to determine how is that card rotated
-    #         third_corner, height = sorted_distances[1]
-    #         if third_corner[1] > leftmost[1]:
-    #             # Nearest neighbour and leftmost point make upper side
-    #             lu = leftmost
-    #             ru = nearest_neighbour
-    #             lb = third_corner
-    #             rb, _ = sorted_distances[2]
-    #             return lu, ru, rb, lb, width, height
-    #         else:
-    #             # Nearest neighbour and leftmost point make bottom side
-    #             lb = leftmost
-    #             rb = nearest_neighbour
-    #             lu = third_corner
-    #             ru, _ = sorted_distances[2]
-    #             return lu, ru, rb, lb, width, height
-
     @staticmethod
     def calc_eucl_dist(p1, p2):
         return np.sqrt((p1[0] - p2[0]) ** 2 + (p1[1] - p2[1]) ** 2)
@@ -190,18 +138,6 @@ class RectangleDetector(object):
                 cv.circle(img, tuple(corner), 3, colour, -1)
 
 #
-# img = cv.imread("resources\\images\\source_images\\Zhur-Taa Goblin.full.jpg")
-# dtc = RectangleDetector(img)
-# cropped = dtc.crop()
-# contoured = dtc.draw_contours(dtc.org_img, dtc.contours, (0, 255, 0))
-# dtc.draw_corners(contoured, dtc.card_corners_list, (255, 0, 0))
-# if cropped:
-#     cv.imshow("win", cropped[0])
-# cv.imshow("contoured", contoured)
-# cv.imshow("canny", dtc.canny_img)
-# cv.waitKey(0)
-# cv.destroyAllWindows()
-
 
 # TODO: Do not write file if it is not cropped.
 #   it does, but it is warped (wrong corners)

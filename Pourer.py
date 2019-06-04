@@ -22,8 +22,6 @@ for file in files:
         i = 0
         for cropped_image in cropped_images:
             i += 1
-            # cv.imshow("cr", cropped_image)
-            # cv.waitKey(0)
             loc = '{}\\{}-{}'.format("resources\\images\\cropped_images", i, file_name)
             cv.imwrite(loc, cropped_image)
             dh = DataHolder(file_name)
@@ -44,5 +42,4 @@ for file in files:
             print("-------------")
 
         cv.destroyAllWindows()
-        #print("end")
 
